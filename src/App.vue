@@ -1,28 +1,55 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-if="stats">
+      <button @click="showStats">Hide Stats</button>
+    </div>
+    <div v-if="!stats">
+      <button @click="showStats">Show Stats</button>
+    </div>
+    <div v-if="stats">
+      <Stats />
+    </div>
+    <MainCom />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainCom from "./components/Main.vue";
+import Stats from "./components/Stats.vue";
 
 export default {
-  name: 'App',
+  name: "app",
   components: {
-    HelloWorld
+    MainCom,
+    Stats
+  },
+  data() {
+    return {
+      stats: false
+    };
+  },
+  methods: {
+    showStats() {
+      this.stats = !this.stats;
+    }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #0cf50cbb;
+  cursor: pointer;
 }
 </style>
